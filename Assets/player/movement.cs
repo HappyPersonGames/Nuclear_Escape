@@ -23,15 +23,18 @@ public class movement : MonoBehaviour
     }
 
     void FixedUpdate() {
-        rb2.velocity = new Vector2(horizontal_movement * speed, vertical_movement * speed);
-        if(horizontal_movement < 0)
+        if(GetComponent<gather>().getHealth() > 0)
         {
-            this.gameObject.transform.localScale = new Vector3(-1f, 1f, 1f);
-            
-        }
-        else if(horizontal_movement > 0)
-        {
-            this.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+            rb2.velocity = new Vector2(horizontal_movement * speed, vertical_movement * speed);
+            if(horizontal_movement < 0)
+            {
+                this.gameObject.transform.localScale = new Vector3(-1f, 1f, 1f);
+                
+            }
+            else if(horizontal_movement > 0)
+            {
+                this.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
         }
     }
 

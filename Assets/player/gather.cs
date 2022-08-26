@@ -27,6 +27,13 @@ public class gather : MonoBehaviour
     private SpriteRenderer sr;
     private bool dep;
     private Collider2D container;
+    [SerializeField]
+    private int health = 3;
+    private int MAX_HEALTH;
+    private int coolDownAttack;
+    private float coolDownLight;
+    
+    private float time;
     
     
     // Start is called before the first frame update
@@ -38,17 +45,23 @@ public class gather : MonoBehaviour
         sr = GetComponentInChildren<SpriteRenderer>();
         changeSprite();
         container = GameObject.FindGameObjectWithTag("container").GetComponent<Collider2D>();
+        time = Time.fixedTime;
+        MAX_HEALTH = health;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(health <= 0)
+        {
+            killPlayer();
+        }
         // light manage
         playerLight.pointLightInnerRadius = initRadius * (current+1) * lightMult;
         playerLight.pointLightOuterRadius = initRadius * (current+3) * lightMult;
         alertRadius = playerLight.pointLightOuterRadius;
         dep = Input.GetButton("Jump");
-        
+        lightFlicker();
         if(grabRadius.IsTouching(container) && container.CompareTag("container"))
         {
             if(dep && current > 0)    
@@ -58,7 +71,30 @@ public class gather : MonoBehaviour
                 container.GetComponent<container>().addMore();
             }
         }
+
+        if(Time.fixedTime - time > 1)
+        {
+            time = Time.fixedTime;
+            if (coolDownAttack > 0)
+            {
+                coolDownAttack--;
+            }
+        }
         
+    }
+
+    public void lightFlicker()
+    {
+        if ((Time.fixedTime) % health == 0 && health != MAX_HEALTH)
+            playerLight.intensity = 0;
+        else
+            playerLight.intensity = 1;
+    }
+
+    public void killPlayer()
+    {
+        Debug.Log("You died");
+        Destroy(gameObject);
     }
 
     private void changeSprite()
@@ -95,5 +131,19 @@ public class gather : MonoBehaviour
         return alertRadius;
     }
 
+    public void doDamage()
+    {
+        if(coolDownAttack == 0)
+        {
+            health--;
+            coolDownAttack = 3;
+        }
+        
+    }
+
+    public int getHealth()
+    {
+        return health;
+    }
 
 }
