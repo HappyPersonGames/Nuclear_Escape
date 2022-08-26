@@ -10,7 +10,7 @@ public class enemy1 : MonoBehaviour
     private bool up;
     private GameObject player;
     [SerializeField]
-    private float alertRange;
+    private float attackRange = 1;
     private SpriteRenderer sr;
     [SerializeField]
     private Sprite awake;
@@ -18,6 +18,7 @@ public class enemy1 : MonoBehaviour
     private Sprite asleep;
     private Light2D mLight;
     
+    private bool attack;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +27,14 @@ public class enemy1 : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         sr = GetComponentInChildren<SpriteRenderer>();
         mLight = GetComponentInChildren<Light2D>();
+        attack = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         alert = Mathf.Abs(Vector3.Distance(player.transform.position, transform.position)) <= player.GetComponent<gather>().getAlertRadius();
-
+        attack = Mathf.Abs(Vector3.Distance(player.transform.position, transform.position)) <= attackRange;
         if (alert)
         {
             wakeUp();
@@ -46,6 +48,10 @@ public class enemy1 : MonoBehaviour
         {
             mLight.pointLightInnerRadius = 0;
             mLight.pointLightOuterRadius = 0;
+        }
+        if(attack)
+        {
+            player.GetComponent<gather>().doDamage();
         }
 
 
