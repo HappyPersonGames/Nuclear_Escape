@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class enemy1 : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class enemy1 : MonoBehaviour
     private GameObject player;
     [SerializeField]
     private float alertRange;
+    private SpriteRenderer sr;
+    [SerializeField]
+    private Sprite awake;
+    [SerializeField]
+    private Sprite asleep;
+    private Light2D mLight;
     
     // Start is called before the first frame update
     void Start()
@@ -17,12 +24,30 @@ public class enemy1 : MonoBehaviour
         alert = false;
         up = false;
         player = GameObject.FindGameObjectWithTag("Player");
+        sr = GetComponentInChildren<SpriteRenderer>();
+        mLight = GetComponentInChildren<Light2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        alert = Mathf.Abs(Vector3.Distance(player.transform.position, transform.position)) <= alertRange;
+        alert = Mathf.Abs(Vector3.Distance(player.transform.position, transform.position)) <= player.GetComponent<gather>().getAlertRadius();
+
+        if (alert)
+        {
+            wakeUp();
+        }
+
+        else
+        {
+            pauseAttack();    
+        }
+        if (!up)
+        {
+            mLight.pointLightInnerRadius = 0;
+            mLight.pointLightOuterRadius = 0;
+        }
+
 
     }
 
@@ -37,8 +62,19 @@ public class enemy1 : MonoBehaviour
 
     public void wakeUp()
     {
-        alert = true;
         up = true;
+        sr.sprite = awake;
+        mLight.pointLightInnerRadius = 0;
+        mLight.pointLightOuterRadius = 3;
+    }
+
+    public void pauseAttack()
+    {
+        sr.sprite = asleep;
+        if(up) 
+        {
+            
+        }
     }
 
 }

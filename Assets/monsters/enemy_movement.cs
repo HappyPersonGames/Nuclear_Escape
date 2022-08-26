@@ -22,18 +22,23 @@ public class enemy_movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        find_target();
-        rb.velocity =   (target.transform.position - transform.position);
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        if (GetComponent<enemy1>().getState() == "Alert")
+        {
+            find_target();
+            rb.velocity = (target.transform.position - transform.position);
             
-        
-        
-        if(rb.velocity.x < 0)
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-        else if(rb.velocity.x > 0)
-            transform.localScale = new Vector3(1f, 1f, 1f);
-        
+
+            if(rb.velocity.x < 0)
+                transform.localScale = new Vector3(-1f, 1f, 1f);
+            else if(rb.velocity.x > 0)
+                transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+
+        else
+        {
+            rb.velocity = new Vector3(0,0,0);
+        }
         
     }
 

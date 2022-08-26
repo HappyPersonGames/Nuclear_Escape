@@ -46,7 +46,7 @@ public class gather : MonoBehaviour
         // light manage
         playerLight.pointLightInnerRadius = initRadius * (current+1) * lightMult;
         playerLight.pointLightOuterRadius = initRadius * (current+3) * lightMult;
-        alertRadius = playerLight.pointLightInnerRadius;
+        alertRadius = playerLight.pointLightOuterRadius;
         dep = Input.GetButton("Jump");
         
         if(grabRadius.IsTouching(container) && container.CompareTag("container"))
