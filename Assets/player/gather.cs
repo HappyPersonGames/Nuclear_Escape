@@ -150,7 +150,7 @@ public class gather : MonoBehaviour
     }
     public float getAlertRadius()
     {
-        return alertRadius + SceneManager.GetActiveScene().buildIndex;
+        return alertRadius + getLevelMod();
     }
 
     public void doDamage()
@@ -167,6 +167,22 @@ public class gather : MonoBehaviour
     public int getHealth()
     {
         return health;
+    }
+
+    private float getLevelMod()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 6)
+        {
+            return 5;
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 5)
+        {
+            return 3;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
 }
