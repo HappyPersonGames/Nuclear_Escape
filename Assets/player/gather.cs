@@ -165,6 +165,9 @@ public class gather : MonoBehaviour
             playerLight.color = Color.red;
             health--;
             coolDownAttack = GRACE_PERIOD;
+            Transform cam = GameObject.FindGameObjectWithTag("MainCamera").transform;
+            cam.GetComponent<Shake>().shakeDuration = 0.4f;
+            
         }
         
     }
