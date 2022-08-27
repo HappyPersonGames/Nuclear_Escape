@@ -21,7 +21,7 @@ public class door : action
     // Update is called once per frame
     void Update()
     {
-        if(bc.isTrigger && bc.IsTouching(player) && Time.fixedTime == curTime + 2)
+        if(bc.isTrigger && bc.IsTouching(player) && Time.fixedTime >= curTime + 2)
         {
             nextLevel();
         }
