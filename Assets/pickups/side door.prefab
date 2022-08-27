@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: -4439363372814607155}
   - component: {fileID: 4089497210598973476}
   - component: {fileID: 6071152704510725090}
-  - component: {fileID: 7450672362112344004}
   m_Layer: 0
   m_Name: side door
   m_TagString: full_action
@@ -170,26 +169,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 3.62}
   m_EdgeRadius: 0
---- !u!95 &7450672362112344004
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2012393368852262003}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8567e0fc5f3b34d4fa7269ec78f0009a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4968941059166150817
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3689973319476074363}
   - component: {fileID: 7484663835851234536}
+  - component: {fileID: 119618504537304157}
   m_Layer: 0
   m_Name: side door_0
   m_TagString: Untagged
@@ -274,3 +254,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &119618504537304157
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4968941059166150817}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8567e0fc5f3b34d4fa7269ec78f0009a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

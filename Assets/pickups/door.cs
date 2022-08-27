@@ -39,6 +39,7 @@ public class door : action
 
     private void nextLevel()
     {
+        anim.SetBool("exit", false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 }
