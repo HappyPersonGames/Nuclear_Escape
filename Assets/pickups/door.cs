@@ -9,6 +9,7 @@ public class door : action
     private BoxCollider2D bc;
     private Animator anim;
     private float curTime;
+    private bool finished;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +17,18 @@ public class door : action
         bc = GetComponent<BoxCollider2D>();
         bc.isTrigger = false;
         anim = GetComponentInChildren<Animator>();
+        finished = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(bc.isTrigger && bc.IsTouching(player) && Time.fixedTime == curTime + 2)
+        if(curTime >= Time.deltaTime + 2 && finished)
+        {
+            bc.isTrigger = true;
+            curTime = Time.fixedTime;
+        }
+        else if(bc.isTrigger && bc.IsTouching(player) && curTime >= Time.deltaTime + 2)
         {
             nextLevel();
         }
@@ -33,7 +40,7 @@ public class door : action
         AudioSource asa = GetComponent<AudioSource>();
         asa.mute = false;
         asa.Play();
-        bc.isTrigger = true;
+        finished = true;
         curTime = Time.fixedTime;
     }
 

@@ -69,9 +69,9 @@ public class gather : MonoBehaviour
         {
             if(dep && current > 0)    
             {
-                anim.SetInteger("current", current);
                 container.GetComponent<container>().addMore(current);
                 current = 0;
+                anim.SetInteger("current", current);
             }
         }
 
