@@ -5,7 +5,7 @@ using UnityEngine.Rendering.Universal;
 
 public class spill_spread : action
 {
-    private bool start_spreading = true;
+    private bool start_spreading = false;
     private float t;
     [SerializeField]
     private float growingBy = 1f;
@@ -20,11 +20,14 @@ public class spill_spread : action
     {
         if (start_spreading)
         {
-            transform.localScale += new Vector3(growingBy, growingBy, growingBy);
-            GetComponentInChildren<Light2D>().pointLightOuterRadius += growingBy;
-            GetComponentInChildren<Light2D>().pointLightInnerRadius += growingBy;
-            // t = Time.fixedTime;
+            growingBy *= 3;
         }
+        transform.localScale += new Vector3(growingBy, growingBy, growingBy);
+        GetComponentInChildren<Light2D>().pointLightOuterRadius += growingBy;
+        GetComponentInChildren<Light2D>().pointLightInnerRadius += growingBy;
+        GetComponentInChildren<Light2D>().intensity += growingBy;
+        // t = Time.fixedTime;
+        
     }
 
     public override void activate()
