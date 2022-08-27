@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
- using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class gather : MonoBehaviour
 {
@@ -27,24 +28,25 @@ public class gather : MonoBehaviour
     private int MAX_HEALTH;
     private int coolDownAttack;
     private float coolDownLight;
-    
     private float time;
+    private float deathTime;
     private Color originalPlayer;
     private AudioSource asa;
-    
+    [SerializeField]
+    private GameObject gameOver;
     // Start is called before the first frame update
     void Start()
     {
         grabRadius = GetComponent<CircleCollider2D>();
         current = 0;
         playerLight = GetComponentInChildren<Light2D>();
-        
         container = GameObject.FindGameObjectWithTag("container").GetComponent<Collider2D>();
         time = Time.fixedTime;
         MAX_HEALTH = health;
         originalPlayer = playerLight.color;
         asa = GetComponent<AudioSource>();
         anim = GetComponentInChildren<Animator>();
+        gameOver.SetActive(false);
     }
 
     // Update is called once per frame
@@ -63,6 +65,7 @@ public class gather : MonoBehaviour
         if (health <= -44 && dep)
         {
            SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+           gameObject.SetActive(false);
         }
         lightFlicker();
         if(grabRadius.IsTouching(container) && container.CompareTag("container"))
@@ -74,9 +77,11 @@ public class gather : MonoBehaviour
                 anim.SetInteger("current", current);
             }
         }
-
         if(Time.fixedTime - time > 1)
         {
+            deathTime++;
+            if(health <= 0 && deathTime > 3)
+                gameOver.SetActive(true);
             time = Time.fixedTime;
             if (coolDownAttack > 0)
             {
@@ -88,7 +93,6 @@ public class gather : MonoBehaviour
                 playerLight.color = originalPlayer;
             }
         }
-        
     }
 
     public void lightFlicker()
@@ -101,11 +105,10 @@ public class gather : MonoBehaviour
 
     public void killPlayer()
     {
-        Debug.Log("You died");
-        // sr.sprite = dead;
         anim.SetInteger("hp", health);
         playerLight.color = Color.red;
         health = -44;
+        deathTime = 0;
     }
 
     void OnTriggerStay2D(Collider2D other)
