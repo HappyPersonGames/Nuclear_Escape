@@ -167,4 +167,9 @@ public class gather : MonoBehaviour
         }
     }
 
+    public bool isImmune()
+    {
+        return coolDownAttack != 0;
+    }
+
 }

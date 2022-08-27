@@ -56,8 +56,11 @@ public class enemy1 : MonoBehaviour
         }
         if(attack)
         {
-            hit.mute = false;
-            hit.Play();
+            if (!player.GetComponent<gather>().isImmune())
+            {
+                hit.mute = false;
+                hit.Play();
+            }
             player.GetComponent<gather>().doDamage();
         }
 
