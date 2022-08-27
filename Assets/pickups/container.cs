@@ -72,7 +72,7 @@ public class container : MonoBehaviour
             sr.sprite = s0;
     }
 
-    public void addMore()
+    public void addMore(int amount)
     {
         asa.mute = false;
         asa.Play();
@@ -84,7 +84,7 @@ public class container : MonoBehaviour
                 a.GetComponent<action>().activate();
             }
         }
-        current++;
+        current += amount;
         changeSprite();
         if (current == targetAmount)
         {

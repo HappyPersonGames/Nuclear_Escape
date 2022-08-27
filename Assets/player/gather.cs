@@ -17,17 +17,6 @@ public class gather : MonoBehaviour
     private int current = 0;
     [SerializeField]
     private float lightMult = 1.5f;
-    [SerializeField]
-    private Sprite s0;
-    [SerializeField]
-    private Sprite s1;
-    [SerializeField]
-    private Sprite s2;
-    [SerializeField]
-    private Sprite s3;
-    [SerializeField]
-    // private Sprite dead;
-    // private SpriteRenderer sr;
     private Animator anim;
     private bool dep;
     private Collider2D container;
@@ -49,8 +38,7 @@ public class gather : MonoBehaviour
         grabRadius = GetComponent<CircleCollider2D>();
         current = 0;
         playerLight = GetComponentInChildren<Light2D>();
-        // sr = GetComponentInChildren<SpriteRenderer>();
-        // changeSprite();
+        
         container = GameObject.FindGameObjectWithTag("container").GetComponent<Collider2D>();
         time = Time.fixedTime;
         MAX_HEALTH = health;
@@ -81,10 +69,9 @@ public class gather : MonoBehaviour
         {
             if(dep && current > 0)    
             {
-                current = 0;
-                // changeSprite();
                 anim.SetInteger("current", current);
-                container.GetComponent<container>().addMore();
+                container.GetComponent<container>().addMore(current);
+                current = 0;
             }
         }
 
@@ -121,21 +108,6 @@ public class gather : MonoBehaviour
         health = -44;
     }
 
-    // private void changeSprite()
-    // {
-    //     // change Sprite
-    //     if (current == 0)
-    //         sr.sprite = s0;
-    //     else if (current == 1)
-    //         sr.sprite = s1;
-    //     else if (current == 2)
-    //         sr.sprite = s2;
-    //     else if (current == 3)
-    //         sr.sprite = s3;
-    //     else 
-    //         sr.sprite = s0;
-    // }
-
     void OnTriggerStay2D(Collider2D other)
     {
         if(grabRadius.IsTouching(other) && other.CompareTag("sticklight"))
@@ -147,7 +119,6 @@ public class gather : MonoBehaviour
                 current ++;
                 anim.SetInteger("current", current);
                 Destroy(other.gameObject);
-                // changeSprite();
             }
             
         }
