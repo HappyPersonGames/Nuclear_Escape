@@ -20,6 +20,7 @@ public class enemy1 : MonoBehaviour
     
     private bool attack;
     private bool idle;
+    private AudioSource hit;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +31,7 @@ public class enemy1 : MonoBehaviour
         mLight = GetComponentInChildren<Light2D>();
         attack = false;
         idle = false;
+        hit = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -53,6 +55,8 @@ public class enemy1 : MonoBehaviour
         }
         if(attack)
         {
+            hit.mute = false;
+            hit.Play();
             player.GetComponent<gather>().doDamage();
         }
 
