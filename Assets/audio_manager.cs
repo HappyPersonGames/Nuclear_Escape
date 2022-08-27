@@ -6,7 +6,6 @@ public class audio_manager : MonoBehaviour
 {
     private AudioSource chase;
     private AudioSource def_track;
-    private bool isChase;
     private bool locked;
     private float t;
     // Start is called before the first frame update
@@ -14,7 +13,6 @@ public class audio_manager : MonoBehaviour
     {
         chase = GameObject.FindGameObjectWithTag("chase").GetComponent<AudioSource>();
         def_track = GameObject.FindGameObjectWithTag("def").GetComponent<AudioSource>();
-        isChase = false;
         locked = false;
         t = Time.fixedTime;
     }
@@ -42,7 +40,6 @@ public class audio_manager : MonoBehaviour
             locked = true;
             chase.volume = 1;
             def_track.volume = 0.2f;
-            isChase = true;
             locked = false;
         }
     }
