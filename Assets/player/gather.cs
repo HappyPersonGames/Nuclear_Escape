@@ -150,7 +150,7 @@ public class gather : MonoBehaviour
     }
     public float getAlertRadius()
     {
-        return alertRadius;
+        return alertRadius + SceneManager.GetActiveScene().buildIndex;
     }
 
     public void doDamage()
