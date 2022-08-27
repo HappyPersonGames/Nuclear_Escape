@@ -135,6 +135,9 @@ MonoBehaviour:
   s1: {fileID: -2130275643, guid: 36c312f22397d814cb113dc542b924b4, type: 3}
   s2: {fileID: 147080899, guid: f2df44e436dd11047859dc7cd456fb89, type: 3}
   s3: {fileID: -1527209681, guid: 47ea97abcfcd4194b9885c10b9410e9b, type: 3}
+  dead: {fileID: -417493901, guid: 2ad3789816762344e855e7226cbe4337, type: 3}
+  health: 3
+  GRACE_PERIOD: 3
 --- !u!1 &2305056152086073966
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ public class enemy1 : MonoBehaviour
     private Light2D mLight;
     
     private bool attack;
+    private bool idle;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,13 +29,14 @@ public class enemy1 : MonoBehaviour
         sr = GetComponentInChildren<SpriteRenderer>();
         mLight = GetComponentInChildren<Light2D>();
         attack = false;
+        idle = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         alert = Mathf.Abs(Vector3.Distance(player.transform.position, transform.position)) <= player.GetComponent<gather>().getAlertRadius();
-        attack = Mathf.Abs(Vector3.Distance(player.transform.position, transform.position)) <= attackRange;
+        attack = Mathf.Abs(Vector3.Distance(player.transform.position, transform.position)) <= attackRange && !idle;
         if (alert)
         {
             wakeUp();
@@ -70,7 +72,6 @@ public class enemy1 : MonoBehaviour
     {
         up = true;
         sr.sprite = awake;
-        mLight.pointLightInnerRadius = 0;
         mLight.pointLightOuterRadius = 3;
     }
 
@@ -79,8 +80,22 @@ public class enemy1 : MonoBehaviour
         sr.sprite = asleep;
         if(up) 
         {
-            
+            if(mLight.pointLightOuterRadius > 0)
+            {
+                mLight.pointLightOuterRadius -= 0.02f;
+            }
         }
     }
+
+    public void forceIdle()
+    {
+        idle = true;
+    }
+
+    public void unforceIdle()
+    {
+        idle = false;
+    }
+
 
 }

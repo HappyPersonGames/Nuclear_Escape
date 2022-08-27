@@ -6,6 +6,8 @@ TagManager:
   tags:
   - sticklight
   - container
+  - first_action
+  - full_action
   layers:
   - Default
   - TransparentFX

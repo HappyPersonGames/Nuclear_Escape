@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+ using UnityEngine.SceneManagement;
 
 public class gather : MonoBehaviour
 {
@@ -24,17 +25,21 @@ public class gather : MonoBehaviour
     private Sprite s2;
     [SerializeField]
     private Sprite s3;
+    [SerializeField]
+    private Sprite dead;
     private SpriteRenderer sr;
     private bool dep;
     private Collider2D container;
     [SerializeField]
     private int health = 3;
+    [SerializeField]
+    private int GRACE_PERIOD = 3;
     private int MAX_HEALTH;
     private int coolDownAttack;
     private float coolDownLight;
     
     private float time;
-    
+    private Color originalPlayer;
     
     // Start is called before the first frame update
     void Start()
@@ -47,12 +52,13 @@ public class gather : MonoBehaviour
         container = GameObject.FindGameObjectWithTag("container").GetComponent<Collider2D>();
         time = Time.fixedTime;
         MAX_HEALTH = health;
+        originalPlayer = playerLight.color;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(health <= 0)
+        if(health <= 0 && health != -44)
         {
             killPlayer();
         }
@@ -61,6 +67,10 @@ public class gather : MonoBehaviour
         playerLight.pointLightOuterRadius = initRadius * (current+3) * lightMult;
         alertRadius = playerLight.pointLightOuterRadius;
         dep = Input.GetButton("Jump");
+        if (health == -44 && dep)
+        {
+           SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        }
         lightFlicker();
         if(grabRadius.IsTouching(container) && container.CompareTag("container"))
         {
@@ -77,7 +87,12 @@ public class gather : MonoBehaviour
             time = Time.fixedTime;
             if (coolDownAttack > 0)
             {
+                playerLight.color = Color.Lerp(originalPlayer, Color.red, (coolDownAttack + 0f)/GRACE_PERIOD);
                 coolDownAttack--;
+            }
+            else
+            {
+                playerLight.color = originalPlayer;
             }
         }
         
@@ -94,7 +109,10 @@ public class gather : MonoBehaviour
     public void killPlayer()
     {
         Debug.Log("You died");
-        Destroy(gameObject);
+        sr.sprite = dead;
+        playerLight.color = Color.red;
+        health = -44;
+
     }
 
     private void changeSprite()
@@ -135,8 +153,9 @@ public class gather : MonoBehaviour
     {
         if(coolDownAttack == 0)
         {
+            playerLight.color = Color.red;
             health--;
-            coolDownAttack = 3;
+            coolDownAttack = GRACE_PERIOD;
         }
         
     }

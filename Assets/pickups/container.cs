@@ -25,6 +25,8 @@ public class container : MonoBehaviour
     [SerializeField]
     private Sprite s3;
     private SpriteRenderer sr;
+    private GameObject[] actionsOnFull;
+    private GameObject[] actionsOnFirst;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,8 @@ public class container : MonoBehaviour
         targetAmount = GameObject.FindGameObjectsWithTag("sticklight").Length;
         sr = GetComponentInChildren<SpriteRenderer>();
         changeSprite();
+        actionsOnFull = GameObject.FindGameObjectsWithTag("full_action");
+        actionsOnFirst = GameObject.FindGameObjectsWithTag("first_action");
     }
 
     // Update is called once per frame
@@ -70,7 +74,27 @@ public class container : MonoBehaviour
 
     public void addMore()
     {
+        if (current == 0)
+        {
+            foreach (GameObject a in actionsOnFirst)
+            {
+
+                a.GetComponent<action>().activate();
+            }
+        }
         current++;
         changeSprite();
+        if (current == targetAmount)
+        {
+            foreach (GameObject a in actionsOnFull)
+            {
+                a.GetComponent<action>().activate();
+            }
+        }
+    }
+
+    public void unlock()
+    {
+
     }
 }
