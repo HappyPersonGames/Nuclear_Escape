@@ -45,3 +45,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: floor
+    uniqueID: 1986830793
+    locked: 0
+  - name: spill
+    uniqueID: 3186864499
+    locked: 0
+  - name: obstacles
+    uniqueID: 1299159815
+    locked: 0
+  - name: signs
+    uniqueID: 3748913475
+    locked: 0
+  - name: player
+    uniqueID: 4213651035
+    locked: 0

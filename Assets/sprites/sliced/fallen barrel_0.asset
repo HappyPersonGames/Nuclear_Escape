@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: fallen barrel_0
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 1728573957, guid: daf6e653099f1a947be060efbc7d472b, type: 3}
+  m_Sprite: {fileID: -1186209746, guid: daf6e653099f1a947be060efbc7d472b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

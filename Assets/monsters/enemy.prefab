@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a8994d5e250ec449ad7f330d3eacffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alertRange: 3
+  attackRange: 1
   awake: {fileID: -417493901, guid: 2ad3789816762344e855e7226cbe4337, type: 3}
   asleep: {fileID: 2065274350, guid: 429563dfcb16ac54abeeb64708cac807, type: 3}
 --- !u!1 &1372014429482483499
