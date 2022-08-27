@@ -11,11 +11,7 @@ public class enemy1 : MonoBehaviour
     private GameObject player;
     [SerializeField]
     private float attackRange = 1;
-    private SpriteRenderer sr;
-    [SerializeField]
-    private Sprite awake;
-    [SerializeField]
-    private Sprite asleep;
+    private Animator anim;
     private Light2D mLight;
     
     private bool attack;
@@ -29,7 +25,7 @@ public class enemy1 : MonoBehaviour
         alert = false;
         up = false;
         player = GameObject.FindGameObjectWithTag("Player");
-        sr = GetComponentInChildren<SpriteRenderer>();
+        anim = GetComponentInChildren<Animator>();
         mLight = GetComponentInChildren<Light2D>();
         attack = false;
         idle = false;
@@ -80,13 +76,13 @@ public class enemy1 : MonoBehaviour
     public void wakeUp()
     {
         up = true;
-        sr.sprite = awake;
         mLight.pointLightOuterRadius = 3;
+        anim.SetBool("idle",false);
     }
 
     public void pauseAttack()
     {
-        sr.sprite = asleep;
+        anim.SetBool("idle",true);
         if(up) 
         {
             if(mLight.pointLightOuterRadius > 0)
@@ -109,6 +105,4 @@ public class enemy1 : MonoBehaviour
     {
         idle = false;
     }
-
-
 }
