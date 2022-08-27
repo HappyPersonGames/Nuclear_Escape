@@ -80,10 +80,10 @@ public class gather : MonoBehaviour
         if(Time.fixedTime - time > 1)
         {
             deathTime++;
+            time = Time.fixedTime;
             if(health <= 0 && deathTime > 3)
                 gameOver.SetActive(true);
-            time = Time.fixedTime;
-            if (coolDownAttack > 0)
+            else if (coolDownAttack > 0)
             {
                 playerLight.color = Color.Lerp(originalPlayer, Color.red, (coolDownAttack + 0f)/GRACE_PERIOD);
                 coolDownAttack--;
