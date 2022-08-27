@@ -13,7 +13,7 @@ public class door : action
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<BoxCollider2D>();
         bc = GetComponent<BoxCollider2D>();
         bc.isTrigger = false;
         anim = GetComponentInChildren<Animator>();
@@ -23,12 +23,13 @@ public class door : action
     // Update is called once per frame
     void Update()
     {
-        if(curTime >= Time.deltaTime + 2 && finished)
+        if(Time.fixedTime >= curTime + 2 && finished)
         {
             bc.isTrigger = true;
             curTime = Time.fixedTime;
+            finished = false;
         }
-        else if(bc.isTrigger && bc.IsTouching(player) && curTime >= Time.deltaTime + 2)
+        else if(bc.isTrigger && bc.IsTouching(player))
         {
             nextLevel();
         }
