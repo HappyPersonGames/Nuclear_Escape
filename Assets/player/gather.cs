@@ -40,6 +40,7 @@ public class gather : MonoBehaviour
     
     private float time;
     private Color originalPlayer;
+    private AudioSource asa;
     
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,7 @@ public class gather : MonoBehaviour
         time = Time.fixedTime;
         MAX_HEALTH = health;
         originalPlayer = playerLight.color;
+        asa = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -136,6 +138,8 @@ public class gather : MonoBehaviour
         {
             if (current < capacity)
             {
+                asa.mute = false;
+                asa.Play();
                 current ++;
                 Destroy(other.gameObject);
                 changeSprite();

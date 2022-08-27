@@ -21,6 +21,8 @@ public class enemy1 : MonoBehaviour
     private bool attack;
     private bool idle;
     private AudioSource hit;
+    [SerializeField]
+    
     // Start is called before the first frame update
     void Start()
     {

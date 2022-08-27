@@ -27,6 +27,7 @@ public class container : MonoBehaviour
     private SpriteRenderer sr;
     private GameObject[] actionsOnFull;
     private GameObject[] actionsOnFirst;
+    private AudioSource asa;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,7 @@ public class container : MonoBehaviour
         changeSprite();
         actionsOnFull = GameObject.FindGameObjectsWithTag("full_action");
         actionsOnFirst = GameObject.FindGameObjectsWithTag("first_action");
+        asa = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -74,6 +76,8 @@ public class container : MonoBehaviour
 
     public void addMore()
     {
+        asa.mute = false;
+        asa.Play();
         if (current == 0)
         {
             foreach (GameObject a in actionsOnFirst)
