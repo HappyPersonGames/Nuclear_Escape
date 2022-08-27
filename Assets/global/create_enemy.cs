@@ -8,8 +8,6 @@ public class create_enemy : action
     [SerializeField]
     private GameObject enemy;
     
-    [SerializeField]
-    private float grace_time = 3;
     // Start is called before the first frame update
     void Start()
     {

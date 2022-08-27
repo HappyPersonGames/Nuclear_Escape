@@ -8,8 +8,6 @@ public class container : MonoBehaviour
     private Light2D cLight;
     private float initRadius = 0.5f;
     [SerializeField]
-    private int capacity = 999;
-    [SerializeField]
     private int current = 0;
     [SerializeField]
     private int targetAmount = 4;

@@ -21,7 +21,7 @@ public class enemy1 : MonoBehaviour
     private bool attack;
     private bool idle;
     private AudioSource hit;
-    [SerializeField]
+    private audio_manager am;
     
     // Start is called before the first frame update
     void Start()
@@ -34,6 +34,7 @@ public class enemy1 : MonoBehaviour
         attack = false;
         idle = false;
         hit = GetComponent<AudioSource>();
+        am = GameObject.FindGameObjectWithTag("chase").GetComponentInParent<audio_manager>();
     }
 
     // Update is called once per frame
@@ -44,11 +45,13 @@ public class enemy1 : MonoBehaviour
         if (alert)
         {
             wakeUp();
+            am.chasing();
         }
 
         else
         {
             pauseAttack();    
+            
         }
         if (!up)
         {
@@ -89,6 +92,10 @@ public class enemy1 : MonoBehaviour
             if(mLight.pointLightOuterRadius > 0)
             {
                 mLight.pointLightOuterRadius -= 0.02f;
+            }
+            else
+            {
+                up = false;
             }
         }
     }
