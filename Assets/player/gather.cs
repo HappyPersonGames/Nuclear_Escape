@@ -26,8 +26,9 @@ public class gather : MonoBehaviour
     [SerializeField]
     private Sprite s3;
     [SerializeField]
-    private Sprite dead;
-    private SpriteRenderer sr;
+    // private Sprite dead;
+    // private SpriteRenderer sr;
+    private Animator anim;
     private bool dep;
     private Collider2D container;
     [SerializeField]
@@ -48,19 +49,21 @@ public class gather : MonoBehaviour
         grabRadius = GetComponent<CircleCollider2D>();
         current = 0;
         playerLight = GetComponentInChildren<Light2D>();
-        sr = GetComponentInChildren<SpriteRenderer>();
-        changeSprite();
+        // sr = GetComponentInChildren<SpriteRenderer>();
+        // changeSprite();
         container = GameObject.FindGameObjectWithTag("container").GetComponent<Collider2D>();
         time = Time.fixedTime;
         MAX_HEALTH = health;
         originalPlayer = playerLight.color;
         asa = GetComponent<AudioSource>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(health <= 0 && health != -44)
+        
+        if(health <= 0 && health > -44)
         {
             killPlayer();
         }
@@ -69,7 +72,7 @@ public class gather : MonoBehaviour
         playerLight.pointLightOuterRadius = initRadius * (current+3) * lightMult;
         alertRadius = playerLight.pointLightOuterRadius;
         dep = Input.GetButton("Jump");
-        if (health == -44 && dep)
+        if (health <= -44 && dep)
         {
            SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
         }
@@ -78,8 +81,9 @@ public class gather : MonoBehaviour
         {
             if(dep && current > 0)    
             {
-                current--;
-                changeSprite();
+                current = 0;
+                // changeSprite();
+                anim.SetInteger("current", current);
                 container.GetComponent<container>().addMore();
             }
         }
@@ -111,26 +115,26 @@ public class gather : MonoBehaviour
     public void killPlayer()
     {
         Debug.Log("You died");
-        sr.sprite = dead;
+        // sr.sprite = dead;
+        anim.SetInteger("hp", health);
         playerLight.color = Color.red;
         health = -44;
-
     }
 
-    private void changeSprite()
-    {
-        // change Sprite
-        if (current == 0)
-            sr.sprite = s0;
-        else if (current == 1)
-            sr.sprite = s1;
-        else if (current == 2)
-            sr.sprite = s2;
-        else if (current == 3)
-            sr.sprite = s3;
-        else 
-            sr.sprite = s0;
-    }
+    // private void changeSprite()
+    // {
+    //     // change Sprite
+    //     if (current == 0)
+    //         sr.sprite = s0;
+    //     else if (current == 1)
+    //         sr.sprite = s1;
+    //     else if (current == 2)
+    //         sr.sprite = s2;
+    //     else if (current == 3)
+    //         sr.sprite = s3;
+    //     else 
+    //         sr.sprite = s0;
+    // }
 
     void OnTriggerStay2D(Collider2D other)
     {
@@ -141,8 +145,9 @@ public class gather : MonoBehaviour
                 asa.mute = false;
                 asa.Play();
                 current ++;
+                anim.SetInteger("current", current);
                 Destroy(other.gameObject);
-                changeSprite();
+                // changeSprite();
             }
             
         }
