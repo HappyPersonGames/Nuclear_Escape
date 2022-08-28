@@ -52,10 +52,10 @@ public class gather : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if(health <= 0 && health > -44)
         {
             killPlayer();
+            gameOver.GetComponentInChildren<Light2D>().intensity = 0;
         }
         // light manage
         playerLight.pointLightInnerRadius = initRadius * (current+1) * lightMult;
@@ -65,7 +65,7 @@ public class gather : MonoBehaviour
         if (health <= -44 && dep)
         {
            SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
-           gameObject.SetActive(false);
+           gameOver.SetActive(false);
         }
         lightFlicker();
         if(grabRadius.IsTouching(container) && container.CompareTag("container"))
@@ -81,8 +81,10 @@ public class gather : MonoBehaviour
         {
             deathTime++;
             time = Time.fixedTime;
-            if(health <= 0 && deathTime > 3)
+            if(health <= 0 && deathTime > 2)
+            {
                 gameOver.SetActive(true);
+            }
             else if (coolDownAttack > 0)
             {
                 playerLight.color = Color.Lerp(originalPlayer, Color.red, (coolDownAttack + 0f)/GRACE_PERIOD);
@@ -93,6 +95,9 @@ public class gather : MonoBehaviour
                 playerLight.color = originalPlayer;
             }
         }
+        if(gameOver.activeSelf && gameOver.GetComponentInChildren<Light2D>().intensity < 1)
+            gameOver.GetComponentInChildren<Light2D>().intensity += 0.001f;
+
     }
 
     public void lightFlicker()
