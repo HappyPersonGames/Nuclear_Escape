@@ -161,6 +161,22 @@ public class gather : MonoBehaviour
         {
             return 3;
         }
+        else if (SceneManager.GetActiveScene().buildIndex == 7)
+        {
+            return 7;
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            return 2;
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            return 2;
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            return 1;
+        }
         else
         {
             return 0;
