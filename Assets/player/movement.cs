@@ -9,10 +9,12 @@ public class movement : MonoBehaviour
     private float vertical_movement;
     [SerializeField]
     private float speed = 10;
+    private bool escape;
     // Start is called before the first frame update
     void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
+        escape = false;
     }
 
     // Update is called once per frame
@@ -20,6 +22,11 @@ public class movement : MonoBehaviour
     {
         horizontal_movement = Input.GetAxisRaw("Horizontal");
         vertical_movement = Input.GetAxisRaw("Vertical");
+        escape = Input.GetButton("Cancel");
+        if (escape)
+        {
+            Application.Quit();
+        }
     }
 
     void FixedUpdate() {
