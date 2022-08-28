@@ -104,8 +104,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 1
-  awake: {fileID: -417493901, guid: 2ad3789816762344e855e7226cbe4337, type: 3}
-  asleep: {fileID: 2065274350, guid: 429563dfcb16ac54abeeb64708cac807, type: 3}
 --- !u!82 &7351185359547119950
 AudioSource:
   m_ObjectHideFlags: 0
@@ -302,7 +300,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 3
+  m_PointLightOuterRadius: 0
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
