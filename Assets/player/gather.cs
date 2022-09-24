@@ -156,6 +156,11 @@ public class gather : MonoBehaviour
         return health;
     }
 
+    public int getCurrentCapacity()
+    {
+        return current;
+    }
+
     private float getLevelMod()
     {
         if (SceneManager.GetActiveScene().buildIndex == 7)
