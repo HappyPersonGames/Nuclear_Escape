@@ -7,22 +7,27 @@ using UnityEngine.Rendering.Universal;
 public class loadGame : MonoBehaviour
 {
     private Light2D light2D;
-    private bool flag;
+    private float startFadeTime;
+    private float fadeoutTime = 2.5f;
+    private float baseIntensity;
     void Start()
     {
         light2D = GetComponentInChildren<Light2D>();
-        flag = false;
+        startFadeTime = -1;
+        baseIntensity = light2D.intensity;
     }
+    
+    
     // Update is called once per frame
     void Update()
     {
         if(Input.GetButton("Jump"))
         {
-            flag = true;
+            startFadeTime = Time.timeSinceLevelLoad;
         }
-        if(flag)
+        if(startFadeTime > 0)
         {
-            light2D.intensity -= 0.001f;
+            light2D.intensity = baseIntensity - baseIntensity * ((Time.timeSinceLevelLoad - startFadeTime)/fadeoutTime);
             if(light2D.intensity <= 0)
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
