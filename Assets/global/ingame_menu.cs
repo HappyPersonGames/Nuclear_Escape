@@ -11,11 +11,13 @@ public class ingame_menu : MonoBehaviour
     private float fadeInTime = 0.1f;
     private float fadeoutTime = 2f;
     private float baseIntensity = 0.7f;
+    private SpriteRenderer sr;
     void Start()
     {
         light2D = GetComponentInChildren<Light2D>();
         startFadeTime = -1;
         light2D.intensity = 0f;
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
     
     
@@ -29,6 +31,7 @@ public class ingame_menu : MonoBehaviour
             {
                 startFadeTime = -1;
                 light2D.intensity = 0f;
+                sr.enabled = false;
             }
             if(Input.GetButtonDown("Quit"))
             {
@@ -38,6 +41,7 @@ public class ingame_menu : MonoBehaviour
         }
         else if(Input.GetButtonDown("Cancel"))
         {
+            sr.enabled = true;
             startFadeTime = Time.timeSinceLevelLoad;
         }
     }
