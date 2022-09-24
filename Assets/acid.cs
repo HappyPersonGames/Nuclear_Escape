@@ -16,7 +16,7 @@ public class acid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        attack = GetComponent<Collider2D>().IsTouching(player.GetComponent<BoxCollider2D>());
+        attack = GetComponent<Collider2D>().IsTouching(player.GetComponent<CapsuleCollider2D>());
         if(attack)
         {
             player.GetComponent<gather>().doDamage();

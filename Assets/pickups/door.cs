@@ -13,7 +13,7 @@ public class door : action
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<BoxCollider2D>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<CapsuleCollider2D>();
         bc = GetComponent<BoxCollider2D>();
         bc.isTrigger = false;
         anim = GetComponentInChildren<Animator>();

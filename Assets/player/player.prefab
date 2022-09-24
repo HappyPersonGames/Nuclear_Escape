@@ -115,11 +115,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5249675697598871677}
   - component: {fileID: 4281448207675416479}
-  - component: {fileID: 6091047238493964114}
   - component: {fileID: 3355377270305278217}
   - component: {fileID: 4441430927467710196}
   - component: {fileID: 8876734440420572110}
   - component: {fileID: 8472562337228840690}
+  - component: {fileID: 3120342507278872499}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -162,32 +162,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
---- !u!61 &6091047238493964114
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1410286415311292809}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.05}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.75, y: 0.89}
-  m_EdgeRadius: 0
 --- !u!114 &3355377270305278217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,13 +211,9 @@ MonoBehaviour:
   capacity: 3
   current: 0
   lightMult: 1.5
-  s0: {fileID: 1173155748, guid: 33176bdc6dda11946a8b986471d5dbdf, type: 3}
-  s1: {fileID: -2130275643, guid: 36c312f22397d814cb113dc542b924b4, type: 3}
-  s2: {fileID: 147080899, guid: f2df44e436dd11047859dc7cd456fb89, type: 3}
-  s3: {fileID: -1527209681, guid: 47ea97abcfcd4194b9885c10b9410e9b, type: 3}
-  dead: {fileID: -417493901, guid: 2ad3789816762344e855e7226cbe4337, type: 3}
   health: 3
   GRACE_PERIOD: 3
+  gameOver: {fileID: 0}
 --- !u!82 &8472562337228840690
 AudioSource:
   m_ObjectHideFlags: 0
@@ -340,6 +310,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!70 &3120342507278872499
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410286415311292809}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.07, y: -0.035}
+  m_Size: {x: 0.5, y: 0.9}
+  m_Direction: 0
 --- !u!1 &2305056152086073966
 GameObject:
   m_ObjectHideFlags: 0
