@@ -8,6 +8,8 @@ TagManager:
   - container
   - first_action
   - full_action
+  - chase
+  - def
   layers:
   - Default
   - TransparentFX
@@ -59,4 +61,7 @@ TagManager:
     locked: 0
   - name: player
     uniqueID: 4213651035
+    locked: 0
+  - name: menu
+    uniqueID: 4097130203
     locked: 0
