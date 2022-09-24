@@ -48,11 +48,6 @@ public class container : MonoBehaviour
         cLight.pointLightOuterRadius = initRadius * (current) * lightMult;
     }
 
-    private void openDoor()
-    {
-
-    }
-
     private void changeSprite()
     {
         float cur = current;
@@ -94,9 +89,13 @@ public class container : MonoBehaviour
             }
         }
     }
-
-    public void unlock()
+    public int getCurrent()
     {
+        return current;
+    }
 
+    public int getTargetAmount()
+    {
+        return targetAmount;
     }
 }
