@@ -163,23 +163,23 @@ public class gather : MonoBehaviour
 
     private float getLevelMod()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 7)
+        if (SceneManager.GetActiveScene().buildIndex == 8)
         {
             return 5;
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 5)
+        else if (SceneManager.GetActiveScene().buildIndex == 6)
         {
             return 3;
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 8)
+        else if (SceneManager.GetActiveScene().buildIndex == 9)
         {
             return 7;
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 3)
+        else if (SceneManager.GetActiveScene().buildIndex == 4)
         {
             return 2;
         }
-        else if (SceneManager.GetActiveScene().buildIndex == 5)
+        else if (SceneManager.GetActiveScene().buildIndex == 6)
         {
             return 1;
         }
@@ -188,7 +188,7 @@ public class gather : MonoBehaviour
             return 0;
         }
     }
-
+    
     public bool isImmune()
     {
         return coolDownAttack != 0;

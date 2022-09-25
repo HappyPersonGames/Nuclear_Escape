@@ -10,20 +10,24 @@ public class loadGame : MonoBehaviour
     private float startFadeTime;
     private float fadeoutTime = 2.5f;
     private float baseIntensity;
+    private bool pressed;
+
     void Start()
     {
         light2D = GetComponentInChildren<Light2D>();
         startFadeTime = -1;
         baseIntensity = light2D.intensity;
+        pressed = false;
     }
     
     
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButton("Jump"))
+        if(Input.GetButton("Jump") && pressed == false)
         {
             startFadeTime = Time.timeSinceLevelLoad;
+            pressed = true;
         }
         if(startFadeTime > 0)
         {
