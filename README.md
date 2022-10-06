@@ -1,6 +1,6 @@
 <img src="Assets/UI/title3.png" width="700">
 
-Nuclear Escape is a horror thriller game made in 7 days for the 'Brackeys' Game Jam 2022.2, the theme of the game jam was "You are not alone".   
+Nuclear Escape is a horror thriller game made in 7 days for the 'Brackeys' Game Jam 2022.2, the theme was "You are not alone".   
 The game was made in Unity with C# language scripting.
 
 ![game gif](https://user-images.githubusercontent.com/80855756/194330130-92fc0aff-4996-44a7-bb57-91a175df6b08.gif)
