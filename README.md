@@ -20,9 +20,9 @@ https://happy-person-games.itch.io/nuclear-escape
 
 ## Controls 
 
-Use W,A,S,D for movement and SPACE for action and you can carry only 3 capsules at a time.
+Use W,A,S,D for movement and SPACE for action, you can carry only 3 capsules at a time.
 
-'Esc' will quit your game so if you would like to pause simply tab out from the game.
+Press 'Esc' and then 'Q' in order to quit, if you choose not to quit simply press 'Esc'.
 
 ## Acknowledgements
 
